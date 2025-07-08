@@ -1,0 +1,1 @@
+// validarDominio.ts placeholder

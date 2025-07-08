@@ -1,0 +1,1 @@
+// UsuarioAdapter.ts placeholder

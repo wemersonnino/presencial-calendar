@@ -1,0 +1,1 @@
+// firebaseAdmin.ts placeholder

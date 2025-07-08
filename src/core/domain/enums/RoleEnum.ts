@@ -1,0 +1,1 @@
+// RoleEnum.ts placeholder

@@ -1,0 +1,1 @@
+// usePermissoes.ts placeholder

@@ -1,0 +1,1 @@
+// verificarPermissao.ts placeholder

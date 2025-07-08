@@ -1,0 +1,1 @@
+// gerarEstatisticas.ts placeholder

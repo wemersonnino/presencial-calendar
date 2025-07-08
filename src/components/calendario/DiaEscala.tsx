@@ -1,0 +1,1 @@
+// DiaEscala.tsx placeholder

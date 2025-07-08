@@ -1,0 +1,1 @@
+// firebaseClient.ts placeholder
