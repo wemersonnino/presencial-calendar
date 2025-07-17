@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, useState } from 'react';
+import { createContext, useContext, ReactNode, useState, useMemo } from 'react';
 
 interface User {
   id: string;
@@ -23,7 +23,7 @@ export function useUser() {
   return context;
 }
 
-export function UserProvider({ children }: { children: ReactNode }) {
+export function UserProvider({ children }: Readonly<{ children: ReactNode }>) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +37,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setLoading(false);
   };
 
-  return (
-    <UserContext.Provider value={{ user, loading, login, logout }}>{children}</UserContext.Provider>
-  );
+  const value = useMemo(() => ({ user, loading, login, logout }), [user, loading]);
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }

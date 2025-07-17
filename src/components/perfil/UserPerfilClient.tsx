@@ -1,7 +1,5 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-
 interface UserPerfilClientProps {
   nome: string;
   email: string;
@@ -20,7 +18,7 @@ export function UserPerfilClient({
   podeVisualizar,
   gerenciaUsuarios,
   descricao,
-}: UserPerfilClientProps) {
+}: Readonly<UserPerfilClientProps>) {
   return (
     <div className="space-y-4 p-4">
       <h1 className="text-2xl font-bold">Perfil do Usuário</h1>

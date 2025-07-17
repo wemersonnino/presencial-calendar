@@ -1,4 +1,3 @@
-// app/(dashboard)/page.tsx
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/authOptions';
@@ -14,5 +13,5 @@ export default async function DashboardPage() {
     redirect('/dashboard/user');
   }
 
-  redirect('/unauthorized'); // ou uma página de erro personalizada
+  redirect('/unauthorized');
 }
