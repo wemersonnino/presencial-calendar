@@ -1,1 +1,0 @@
-// NotificacaoTrocaModal.tsx placeholder

@@ -1,1 +1,0 @@
-// Permissao.ts placeholder

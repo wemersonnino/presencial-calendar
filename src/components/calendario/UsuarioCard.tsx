@@ -1,1 +1,0 @@
-// UsuarioCard.tsx placeholder

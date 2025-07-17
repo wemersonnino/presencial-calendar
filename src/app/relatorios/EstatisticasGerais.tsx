@@ -1,1 +1,0 @@
-// EstatisticasGerais.tsx placeholder
