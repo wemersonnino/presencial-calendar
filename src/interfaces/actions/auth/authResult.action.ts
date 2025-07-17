@@ -1,5 +1,5 @@
 import { ZodFormattedError } from 'zod';
-import { LoginDTO } from '@/schemas/authSchema';
+import { LoginDTO } from '@/schemas/auth.schema';
 
 export type ServerValidationError = Partial<ZodFormattedError<LoginDTO> & { _form?: string[] }>;
 
@@ -18,4 +18,4 @@ export type AuthFailure = {
   errors: ServerValidationError;
 };
 
-export type AuthResult = AuthSuccess | AuthFailure;
+export type AuthResultAction = AuthSuccess | AuthFailure;

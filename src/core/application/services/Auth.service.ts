@@ -1,12 +1,12 @@
 import { AuthPort } from '@/core/application/ports/AuthPort';
-import { FirebaseAdapter } from '@/core/infrastructure/adapters/FirebaseAdapter';
-import { LoginEntitie } from '@/interfaces/loginEntitie';
-import { RegisterEntitie } from '@/interfaces/registerEntitie';
-import { UserDTO } from '@/interfaces/userEntitie';
+import { FirebaseAdapter } from '@/core/infrastructure/adapters/Firebase.adapter';
+import { LoginEntities } from '@/interfaces/login.entities';
+import { RegisterEntities } from '@/interfaces/register.entities';
+import { UserDTO } from '@/interfaces/user.entities';
 
 export class AuthService {
   private static instance: AuthService;
-  private authPort: AuthPort;
+  private readonly authPort: AuthPort;
 
   private constructor() {
     this.authPort = new FirebaseAdapter();
@@ -19,13 +19,13 @@ export class AuthService {
     return AuthService.instance;
   }
 
-  public login(email: string, password: string): Promise<LoginEntitie> {
+  public login(email: string, password: string): Promise<LoginEntities> {
     // Implement login logic here
     console.log(`Logging in user: ${email}`);
     return this.authPort.login(email, password);
   }
 
-  public register(email: string, password: string, nome?: string): Promise<RegisterEntitie> {
+  public register(email: string, password: string, nome?: string): Promise<RegisterEntities> {
     // Implement registration logic here
     console.log(`Registering user: ${email}`);
     return this.authPort.register(email, password, nome);

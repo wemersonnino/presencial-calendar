@@ -1,12 +1,12 @@
 import { RegisterPort } from '@/core/application/ports/RegisterPort';
-import { RegisterEntitie } from '@/interfaces/registerEntitie';
+import { RegisterEntities } from '@/interfaces/register.entities';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 const db = getFirestore();
 import { doc, getFirestore, setDoc } from 'firebase/firestore';
 
 export class RegisterFirebaseAdapter implements RegisterPort {
-  async register(data: RegisterEntitie): Promise<void> {
+  async register(data: RegisterEntities): Promise<void> {
     const { email, senha, nome } = data;
 
     try {

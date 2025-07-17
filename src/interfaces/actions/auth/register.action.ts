@@ -1,10 +1,10 @@
 'use server';
 
-import { RegisterSchema, registerSchema } from '@/schemas/registerSchema';
-import { RegisterService } from '@/core/application/services/RegisterService';
-import { RegisterFirebaseAdapter } from '@/core/infrastructure/adapters/RegisterFirebaseAdapter';
+import { RegisterSchema, registerSchema } from '@/schemas/register.schema';
+import { RegisterService } from '@/core/application/services/Register.service';
+import { RegisterFirebaseAdapter } from '@/core/infrastructure/adapters/RegisterFirebase.adapter';
 
-export async function register(formData: RegisterSchema) {
+export async function registerAction(formData: RegisterSchema) {
   const parsed = registerSchema.safeParse(formData);
 
   if (!parsed.success) {

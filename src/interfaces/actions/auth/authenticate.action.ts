@@ -1,11 +1,10 @@
 'use server';
 
-import { authSchema, LoginDTO } from '@/schemas/authSchema';
-import { authRegisterSchema, RegisterDTO } from '@/schemas/authRegisterSchema';
-import { AuthService } from '@/core/application/services/AuthService';
-import { AuthResult, ServerValidationError } from './authResult';
+import { authSchema, LoginDTO } from '@/schemas/auth.schema';
+import { AuthService } from '@/core/application/services/Auth.service';
+import { AuthResultAction, ServerValidationError } from './authResult.action';
 
-export async function authenticate(formData: LoginDTO): Promise<AuthResult> {
+export async function authenticateAction(formData: LoginDTO): Promise<AuthResultAction> {
   const parsed = authSchema.safeParse(formData);
 
   if (!parsed.success) {

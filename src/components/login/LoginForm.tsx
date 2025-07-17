@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { authSchema, LoginDTO } from '@/schemas/authSchema';
-import { authenticate } from '@/interfaces/actions/auth/authenticate';
+import { authSchema, LoginDTO } from '@/schemas/auth.schema';
+import { authenticateAction } from '@/interfaces/actions/auth/authenticate.action';
 import { signIn } from 'next-auth/react';
 
 export const LoginForm = () => {
@@ -21,11 +21,11 @@ export const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginDTO) => {
-    const result = await authenticate(data);
+    const result = await authenticateAction(data);
 
     if (!result.success) {
       const formError = result.errors._form?.[0];
-      setServerError(formError || 'Falha na autenticação');
+      setServerError(formError ?? 'Falha na autenticação');
       return;
     }
 
@@ -38,7 +38,7 @@ export const LoginForm = () => {
     if (res?.ok) {
       router.push('/dashboard');
     } else {
-      setServerError(res?.error || 'Erro ao logar');
+      setServerError(res?.error ?? 'Erro ao logar');
     }
   };
 

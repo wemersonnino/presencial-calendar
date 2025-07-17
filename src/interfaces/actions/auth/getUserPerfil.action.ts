@@ -3,7 +3,7 @@
 import { firestore } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
-export async function getUserPerfil(email: string) {
+export async function getUserPerfilAction(email: string) {
   try {
     const docRef = doc(firestore, 'usuarios', email);
     const docSnap = await getDoc(docRef);

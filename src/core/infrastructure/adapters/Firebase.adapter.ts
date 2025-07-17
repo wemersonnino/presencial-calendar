@@ -7,15 +7,15 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
-import { LoginEntitie } from '@/interfaces/loginEntitie';
-import { UserDTO } from '@/interfaces/userEntitie';
-import { RegisterEntitie } from '@/interfaces/registerEntitie';
+import { LoginEntities } from '@/interfaces/login.entities';
+import { UserDTO } from '@/interfaces/user.entities';
+import { RegisterEntities } from '@/interfaces/register.entities';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { FirebaseError } from '@firebase/app';
 const db = getFirestore();
 
 export class FirebaseAdapter implements AuthPort {
-  async login(email: string, password: string): Promise<LoginEntitie> {
+  async login(email: string, password: string): Promise<LoginEntities> {
     if (!email) throw new Error('Email obrigatório');
 
     try {
@@ -45,7 +45,7 @@ export class FirebaseAdapter implements AuthPort {
     }
   }
 
-  async register(email: string, password: string, nome?: string): Promise<RegisterEntitie> {
+  async register(email: string, password: string, nome?: string): Promise<RegisterEntities> {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 

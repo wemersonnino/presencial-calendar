@@ -1,4 +1,4 @@
-export interface LoginEntitie {
+export interface LoginEntities {
   uid: string;
   email: string;
   role?: string;

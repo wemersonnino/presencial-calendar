@@ -19,6 +19,7 @@ export default withAuth(
     },
     pages: {
       signIn: '/login',
+      error: '/unauthorized',
     },
   },
 );

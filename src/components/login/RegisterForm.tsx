@@ -2,8 +2,8 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { registerSchema } from '@/schemas/registerSchema';
-import { register } from '@/interfaces/actions/auth/register';
+import { registerSchema } from '@/schemas/register.schema';
+import { registerAction } from '@/interfaces/actions/auth/register.action';
 import { z } from 'zod';
 
 import {
@@ -37,7 +37,7 @@ export const RegisterForm = () => {
     setIsSubmitting(true);
     setFormError(null);
 
-    const result = await register({
+    const result = await registerAction({
       nome: data.nome,
       email: data.email,
       senha: data.senha,

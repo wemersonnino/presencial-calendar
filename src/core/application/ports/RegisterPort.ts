@@ -1,5 +1,5 @@
-import { RegisterEntitie } from '@/interfaces/registerEntitie';
+import { RegisterEntities } from '@/interfaces/register.entities';
 
 export interface RegisterPort {
-  register(data: RegisterEntitie): Promise<void>;
+  register(data: RegisterEntities): Promise<void>;
 }

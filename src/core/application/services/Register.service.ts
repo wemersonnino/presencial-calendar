@@ -1,4 +1,4 @@
-import { RegisterEntitie } from '@/interfaces/registerEntitie';
+import { RegisterEntities } from '@/interfaces/register.entities';
 import { RegisterPort } from '@/core/application/ports/RegisterPort';
 
 export class RegisterService {
@@ -9,7 +9,7 @@ export class RegisterService {
     this.registerPort = registerPort;
   }
 
-  async register(data: RegisterEntitie): Promise<void> {
+  async register(data: RegisterEntities): Promise<void> {
     return this.registerPort.register(data);
   }
 
