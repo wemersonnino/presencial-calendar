@@ -7,6 +7,7 @@ import {
   ChartPieIcon,
   Cog6ToothIcon,
 } from '@heroicons/react/24/outline';
+import React from 'react';
 
 export interface SidebarLink {
   name: string;

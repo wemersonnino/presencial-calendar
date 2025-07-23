@@ -5,11 +5,17 @@ import { sidebarLinks, settingsLink } from './sidebar-links';
 import { SidebarGroup } from './SidebarGroup';
 import Image from 'next/image';
 import logo from '@/images/logo.png';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
-export const Sidebar = () => {
+interface SidebarProps {
+  role?: string;
+  onClose?: () => void;
+}
+
+export const Sidebar = ({ role, onClose }: SidebarProps) => {
   const user = useUser();
 
-  const canView = (roles?: string[]) => !roles || (user?.role && roles.includes(user.role));
+  const canView = (roles?: string[]) => !roles || (role && roles.includes(role));
 
   const groupedLinks = sidebarLinks.reduce(
     (acc, link) => {
@@ -27,6 +33,15 @@ export const Sidebar = () => {
       <div className="mb-6 flex h-10 items-center gap-3 px-2">
         <Image src={logo} alt="Logo" className="h-8 w-auto" width={40} height={40} />
         <h1 className="text-lg font-semibold text-gray-800">Dashboard</h1>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="p-1 text-gray-500 hover:text-gray-700 lg:hidden"
+            aria-label="Fechar menu"
+          >
+            <XMarkIcon className="h-5 w-5" />
+          </button>
+        )}
       </div>
 
       <nav className="flex flex-1 flex-col gap-y-3">

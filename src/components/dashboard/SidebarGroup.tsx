@@ -4,19 +4,18 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 
 export interface SidebarGroupProps {
-  group?: SidebarLink;
   role?: string;
   item: SidebarLink;
 }
 
-export const SidebarGroup = ({ group, role, item }: SidebarGroupProps) => {
+export const SidebarGroup = ({ role, item }: SidebarGroupProps) => {
   const [open, setOpen] = useState(false);
 
   if (!item.children) {
     return (
       <Link
         href={item.href || '#'}
-        className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+        className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
       >
         <item.icon className="h-5 w-5 text-gray-400" />
         {item.name}
@@ -46,7 +45,7 @@ export const SidebarGroup = ({ group, role, item }: SidebarGroupProps) => {
             <li key={child.name}>
               <Link
                 href={child.href || '#'}
-                className="block text-sm text-gray-600 hover:underline"
+                className="block cursor-pointer text-sm text-gray-600 hover:underline"
               >
                 {child.name}
               </Link>
