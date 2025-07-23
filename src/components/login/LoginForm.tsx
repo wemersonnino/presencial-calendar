@@ -19,6 +19,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { AuthLayout } from '@/components/shared/AuthLayout';
 
 export function LoginForm() {
   const router = useRouter();
@@ -54,58 +56,66 @@ export function LoginForm() {
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto w-full max-w-md space-y-6 rounded bg-white p-6 shadow-md"
-      >
-        <h2 className="mb-4 text-2xl font-semibold text-gray-800">Login</h2>
+    <AuthLayout
+      title="Sign in to account"
+      subtitle={
+        <>
+          Don’t have an account?{' '}
+          <Link href="/register" className="text-cyan-600">
+            Sign up (Criar Conta)
+          </Link>{' '}
+          for a free trial.
+        </>
+      }
+    >
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          {serverError && <p className="mb-4 rounded bg-red-100 p-2 text-red-600">{serverError}</p>}
 
-        {serverError && <p className="mb-4 rounded bg-red-100 p-2 text-red-600">{serverError}</p>}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Email" type="email" autoComplete="email" {...field} />
+                </FormControl>
+                <FormDescription>This is your public display e-mail.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Email" type="email" autoComplete="email" {...field} />
-              </FormControl>
-              <FormDescription>This is your public display e-mail.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Senha</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Senha"
+                    type="password"
+                    autoComplete="current-password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>This is your public display password.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Senha</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Senha"
-                  type="password"
-                  autoComplete="current-password"
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>This is your public display password.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button
-          type="submit"
-          disabled={form.formState.isSubmitting}
-          className="w-full cursor-pointer"
-        >
-          {form.formState.isSubmitting ? 'Entrando...' : 'Login'}
-        </Button>
-      </form>
-    </Form>
+          <Button
+            type="submit"
+            disabled={form.formState.isSubmitting}
+            className="w-full cursor-pointer"
+          >
+            {form.formState.isSubmitting ? 'Entrando...' : 'Login'}
+          </Button>
+        </form>
+      </Form>
+    </AuthLayout>
   );
 }

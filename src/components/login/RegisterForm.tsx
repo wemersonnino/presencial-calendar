@@ -17,6 +17,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { AuthLayout } from '@/components/shared/AuthLayout';
+import Link from 'next/link';
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
@@ -70,9 +72,18 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div className="mx-auto max-w-md space-y-6">
-      <h2 className="text-center text-2xl font-bold">Criar Conta</h2>
-
+    <AuthLayout
+      title="Sign up for an account (Criar Conta)"
+      subtitle={
+        <>
+          Already registered?{' '}
+          <Link href="/login" className="text-cyan-600">
+            Sign in (Login)
+          </Link>{' '}
+          to your account.
+        </>
+      }
+    >
       {formError && <div className="text-center text-sm text-red-600">{formError}</div>}
 
       <Form {...form}>
@@ -122,6 +133,6 @@ export const RegisterForm = () => {
           </Button>
         </form>
       </Form>
-    </div>
+    </AuthLayout>
   );
 };
