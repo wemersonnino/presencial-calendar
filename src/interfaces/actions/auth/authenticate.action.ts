@@ -11,7 +11,7 @@ export async function authenticateAction(formData: LoginDTO): Promise<AuthResult
     return {
       success: false,
       errors: {
-        ...parsed.error.format(),
+        ...parsed.error.format((issue) => issue.message),
       },
     };
   }
@@ -27,7 +27,7 @@ export async function authenticateAction(formData: LoginDTO): Promise<AuthResult
     const errors: ServerValidationError = {
       _form: ['Email ou senha inválidos'],
     };
-    console.log('Tentando login com:', formData.email, formData.password);
+    console.log('autentucate.action: Tentando login com:', formData.email, formData.password);
 
     return {
       success: false,

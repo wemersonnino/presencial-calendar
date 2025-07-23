@@ -72,6 +72,7 @@ export function LoginForm() {
               <FormControl>
                 <Input placeholder="Email" type="email" autoComplete="email" {...field} />
               </FormControl>
+              <FormDescription>This is your public display e-mail.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -91,12 +92,17 @@ export function LoginForm() {
                   {...field}
                 />
               </FormControl>
+              <FormDescription>This is your public display password.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" disabled={form.formState.isSubmitting} className="w-full">
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="w-full cursor-pointer"
+        >
           {form.formState.isSubmitting ? 'Entrando...' : 'Login'}
         </Button>
       </form>
