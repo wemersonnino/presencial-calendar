@@ -1,8 +1,6 @@
 @import 'tailwindcss';
 @import "tw-animate-css";
 @import "tailwindcss/theme";
-@import "tailwindcss/index";
-@import "tailwindcss/utilities";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,6 +41,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --radius: 0.625rem;
