@@ -10,14 +10,12 @@ export const metadata: Metadata = {
   description: 'Página de autenticação do sistema',
 };
 
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
+export default function PublicLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-br">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-white antialiased dark:bg-black`}
-      >
-        {children}
-      </body>
-    </html>
+    <div
+      className={`${geistSans.variable} ${geistMono.variable} bg-white antialiased dark:bg-black`}
+    >
+      {children}
+    </div>
   );
 }
