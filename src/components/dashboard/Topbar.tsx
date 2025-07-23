@@ -22,7 +22,11 @@ export const Topbar = ({ onMenuClick }: TopbarProps) => {
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b bg-white px-6 shadow-sm">
       {/* Botão mobile */}
       <div className="flex items-center gap-2">
-        <Button className="text-gray-600 lg:hidden" onClick={onMenuClick} aria-label="Abrir menu">
+        <Button
+          className="cursor-pointer text-gray-600 lg:hidden"
+          onClick={onMenuClick}
+          aria-label="Abrir menu"
+        >
           <Bars3Icon className="h-6 w-6" />
         </Button>
 
