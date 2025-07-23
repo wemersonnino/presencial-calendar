@@ -1,31 +1,70 @@
 'use client';
 
+import { useUser } from './DashboardShell';
+import { sidebarLinks, settingsLink } from './sidebar-links';
+import { SidebarGroup } from './SidebarGroup';
+import Image from 'next/image';
+import logo from '@/images/logo.png';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+
 interface SidebarProps {
   role?: string;
+  onClose?: () => void;
 }
 
-export const Sidebar = ({ role }: SidebarProps) => {
+export const Sidebar = ({ role, onClose }: SidebarProps) => {
+  const user = useUser();
+
+  const canView = (roles?: string[]) => !roles || (role && roles.includes(role));
+
+  const groupedLinks = sidebarLinks.reduce(
+    (acc, link) => {
+      if (!canView(link.roles)) return acc;
+      const group = link.group || 'Outros';
+      if (!acc[group]) acc[group] = [];
+      acc[group].push(link);
+      return acc;
+    },
+    {} as Record<string, typeof sidebarLinks>,
+  );
+
   return (
-    <aside className="w-64 bg-gray-800 p-4 text-white">
-      <h2 className="mb-4 text-xl font-bold">Dashboard</h2>
-      <nav className="space-y-2">
-        {role === 'admin' && (
-          <a href="/dashboard/admin" className="block hover:underline">
-            Área do Admin
-          </a>
+    <aside className="flex w-full flex-col border-r border-gray-200 bg-white px-4 py-6">
+      <div className="mb-6 flex h-10 items-center gap-3 px-2">
+        <Image src={logo} alt="Logo" className="h-8 w-auto" width={40} height={40} />
+        <h1 className="text-lg font-semibold text-gray-800">Dashboard</h1>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="cursor-pointer p-1 text-gray-500 hover:text-gray-700 lg:hidden"
+            aria-label="Fechar menu"
+          >
+            <XMarkIcon className="h-5 w-5" />
+          </button>
         )}
-        {role === 'usuario' && (
-          <a href="/dashboard/user" className="block hover:underline">
-            Área do Usuário
-          </a>
-        )}
-        <a href="/dashboard/perfil" className="block hover:underline">
-          Meu Perfil
-        </a>
-        <a href="/logout" className="block text-red-300 hover:underline">
-          Sair
-        </a>
+      </div>
+
+      <nav className="flex flex-1 flex-col gap-y-3">
+        {Object.entries(groupedLinks).map(([groupTitle, items]) => (
+          <div key={groupTitle}>
+            <h3 className="mb-2 px-3 text-xs font-semibold tracking-wide text-gray-400 uppercase">
+              {groupTitle}
+            </h3>
+            <div className="flex flex-col gap-y-2">
+              {items.map((item) => (
+                <SidebarGroup key={item.name} item={item} role={user?.role} />
+              ))}
+            </div>
+          </div>
+        ))}
       </nav>
+
+      {/* Rodapé: Settings apenas para admin */}
+      {canView(settingsLink.roles) && (
+        <div className="mt-auto border-t border-gray-100 pt-4">
+          <SidebarGroup item={settingsLink} />
+        </div>
+      )}
     </aside>
   );
 };
