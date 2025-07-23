@@ -1,30 +1,42 @@
 'use client';
 
+import Link from 'next/link';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+
 interface SidebarProps {
   role?: string;
+  onClose?: () => void;
 }
 
-export const Sidebar = ({ role }: SidebarProps) => {
+export const Sidebar = ({ role, onClose }: SidebarProps) => {
   return (
-    <aside className="w-64 bg-gray-800 p-4 text-white">
-      <h2 className="mb-4 text-xl font-bold">Dashboard</h2>
-      <nav className="space-y-2">
+    <aside className="flex h-full w-64 flex-col bg-white shadow-md">
+      <div className="flex items-center justify-between border-b p-4">
+        <h2 className="text-lg font-bold">Dashboard</h2>
+        {onClose && (
+          <button onClick={onClose} className="text-gray-600 lg:hidden">
+            <XMarkIcon className="h-5 w-5" />
+          </button>
+        )}
+      </div>
+
+      <nav className="flex-1 space-y-2 p-4 text-sm">
         {role === 'admin' && (
-          <a href="/dashboard/admin" className="block hover:underline">
+          <Link href="/dashboard/admin" className="block hover:underline">
             Área do Admin
-          </a>
+          </Link>
         )}
         {role === 'usuario' && (
-          <a href="/dashboard/user" className="block hover:underline">
+          <Link href="/dashboard/user" className="block hover:underline">
             Área do Usuário
-          </a>
+          </Link>
         )}
         <a href="/dashboard/perfil" className="block hover:underline">
           Meu Perfil
         </a>
-        <a href="/logout" className="block text-red-300 hover:underline">
+        <Link href="/logout" className="block text-red-400 hover:underline">
           Sair
-        </a>
+        </Link>
       </nav>
     </aside>
   );
