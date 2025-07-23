@@ -54,6 +54,7 @@ export const sidebarLinks: SidebarLink[] = [
     name: 'Reports',
     icon: ChartPieIcon,
     group: 'Relatórios',
+    roles: ['admin'],
     children: [
       {
         name: 'Monthly Report',
