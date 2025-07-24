@@ -17,7 +17,7 @@ export class EscalasService {
     return EscalasService.instance;
   }
 
-  public async getEscalas(userId: string): Promise<Escala[]> {
-    return this.adapter.getByUserId(userId);
+  public async getEscalas(email: string): Promise<Escala[]> {
+    return this.adapter.getByUserEmail(email);
   }
 }
