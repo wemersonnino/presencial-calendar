@@ -5,8 +5,8 @@ import { getFirestore, collection, query, where, getDocs } from 'firebase/firest
 const db = getFirestore();
 
 export class FirebaseEscalasAdapter implements EscalasPort {
-  async getByUserId(userId: string): Promise<Escala[]> {
-    const q = query(collection(db, 'escalas'), where('userId', '==', userId));
+  async getByUserEmail(userEmail: string): Promise<Escala[]> {
+    const q = query(collection(db, 'escalas'), where('emailUsuario', '==', userEmail));
     const snapshot = await getDocs(q);
     const escalas: Escala[] = [];
 
