@@ -7,10 +7,14 @@ import { ptBR } from 'date-fns/locale/pt-BR';
 import { Button } from '@headlessui/react';
 
 interface CalendarProps {
-  escalas: Escala[];
+  escalas?: Escala[];
 }
 
 export const Calendar = ({ escalas }: CalendarProps) => {
+  if (!escalas || escalas.length === 0) {
+    return <p>Sem evento</p>;
+  }
+
   return (
     <div className="rounded-md border border-gray-200 bg-white shadow-sm">
       <div className="flex items-center justify-between border-b px-6 py-4">
@@ -40,7 +44,7 @@ export const Calendar = ({ escalas }: CalendarProps) => {
           const day = new Date();
           day.setDate(i + 1);
 
-          const dayEscalas = escalas.filter(
+          const dayEscalas = escalas?.filter(
             (escala) =>
               format(parseISO(escala.datetime), 'yyyy-MM-dd') === format(day, 'yyyy-MM-dd'),
           );
@@ -54,7 +58,7 @@ export const Calendar = ({ escalas }: CalendarProps) => {
                 {day.getDate()}
               </time>
               <ul className="mt-1 space-y-1">
-                {dayEscalas.slice(0, 2).map((event) => (
+                {dayEscalas?.slice(0, 2).map((event) => (
                   <li key={event.id}>
                     <span className="block truncate text-gray-700">{event.title}</span>
                   </li>

@@ -53,7 +53,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  themeColor: '#000000',
   manifest: '/site.webmanifest',
   keywords: [
     'escala app',

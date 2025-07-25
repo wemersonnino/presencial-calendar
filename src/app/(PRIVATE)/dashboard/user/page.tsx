@@ -5,7 +5,7 @@ import { authOptions } from '@/lib/authOptions';
 import { EscalasService } from '@/core/application/services/Escalas.service';
 
 export default async function UserPage() {
-  const session = await getServerSession(authOptions);
+  /*const session = await getServerSession(authOptions);
 
   if (!session?.user?.id) {
     throw new Error('Usuário não autenticado');
@@ -16,12 +16,12 @@ export default async function UserPage() {
 
   if (!escalas) {
     throw new Error('Erro ao carregar escalas do usuário');
-  }
+  }*/
 
   return (
     <>
       <h2 className="text-2xl font-semibold text-gray-800">Agenda do Usuário</h2>
-      <Calendar escalas={escalas} />
+      <Calendar />
     </>
   );
 }
